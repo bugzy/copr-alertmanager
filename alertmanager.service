@@ -1,0 +1,13 @@
+[Unit]
+Description=The Prometheus alerting manager.
+After=syslog.target network.target
+
+[Service]
+Type=simple
+RemainAfterExit=no
+User=alertmanager
+Group=alertmanager
+ExecStart=/usr/sbin/alertmanager --config.file=/etc/alertmanager/alertmanager.yml --log.level info
+
+[Install]
+WantedBy=multi-user.target
