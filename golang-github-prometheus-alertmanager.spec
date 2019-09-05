@@ -16,7 +16,7 @@
 
 Name:           golang-%{provider}-%{project}-%{repo}
 Version:        0.19.0
-Release:        1%{?dist}
+Release:        2%{?dist}
 Summary:        Prometheus Alertmanager
 License:        ASL 2.0
 URL:            https://%{provider_prefix}
@@ -61,6 +61,7 @@ install -Dpm 0755 cmd/amtool/amtool %{buildroot}%{_bindir}/amtool
 %if 0%{?rhel} != 6
 install -Dpm 0644 %{SOURCE1} %{buildroot}%{_unitdir}/alertmanager.service
 %endif
+install -dm 0750 %{buildroot}%{_sharedstatedir}/alertmanager/
 
 %if 0%{?with_check}
 %check
@@ -79,6 +80,7 @@ go test -mod vendor
 %attr(0640, prometheus, prometheus) %config(noreplace) %{_sysconfdir}/alertmanager/alertmanager.yml
 %license LICENSE
 %doc README.md CHANGELOG.md doc/
+%attr(0750, alertmanager, alertmanager) %dir %{_sharedstatedir}/alertmanager/
 %{_sbindir}/alertmanager
 %{_bindir}/amtool
 
