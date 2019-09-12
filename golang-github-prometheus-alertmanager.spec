@@ -16,7 +16,7 @@
 
 Name:           golang-%{provider}-%{project}-%{repo}
 Version:        0.19.0
-Release:        2%{?dist}
+Release:        3%{?dist}
 Summary:        Prometheus Alertmanager
 License:        ASL 2.0
 URL:            https://%{provider_prefix}
@@ -106,3 +106,5 @@ getent passwd alertmanager > /dev/null || \
 %endif
 
 %changelog
+* Thu Sep 12 2019 Ben Reedy <breed808@breed808.com> - 0.19.0-3
+- Disable creation of home directory for alertmanager user
