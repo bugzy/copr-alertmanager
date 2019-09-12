@@ -87,7 +87,7 @@ go test -mod vendor
 %pre
 getent group alertmanager > /dev/null || groupadd -r alertmanager
 getent passwd alertmanager > /dev/null || \
-    useradd -rg alertmanager -s /sbin/nologin \
+    useradd -Mrg alertmanager -s /sbin/nologin \
             -c "Alertmanager - Prometheus alerting system" alertmanager
 
 %post
