@@ -16,7 +16,7 @@
 
 Name:           golang-%{provider}-%{project}-%{repo}
 Version:        0.19.0
-Release:        3%{?dist}
+Release:        4%{?dist}
 Summary:        Prometheus Alertmanager
 License:        ASL 2.0
 URL:            https://%{provider_prefix}
@@ -77,7 +77,7 @@ go test -mod vendor
 %if 0%{?rhel} != 6
 %{_unitdir}/alertmanager.service
 %endif
-%attr(0640, prometheus, prometheus) %config(noreplace) %{_sysconfdir}/alertmanager/alertmanager.yml
+%attr(0640, alertmanager, alertmanager) %config(noreplace) %{_sysconfdir}/alertmanager/alertmanager.yml
 %license LICENSE
 %doc README.md CHANGELOG.md doc/
 %attr(0750, alertmanager, alertmanager) %dir %{_sharedstatedir}/alertmanager/
@@ -106,5 +106,8 @@ getent passwd alertmanager > /dev/null || \
 %endif
 
 %changelog
+* Mon Sep 16 2019 Ben Reedy <breed808@breed808.com> - 0.19.0-4
+- Fix permissions on alertmanager.yml configuration file
+
 * Thu Sep 12 2019 Ben Reedy <breed808@breed808.com> - 0.19.0-3
 - Disable creation of home directory for alertmanager user
